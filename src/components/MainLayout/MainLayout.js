@@ -1,0 +1,20 @@
+import React from 'react'
+import styles from './MainLayout.css'
+import CHeader from './CHeader'
+
+
+
+
+function MainLayout({children, location}) {
+    return (
+        <div className={styles.normal}>
+            {/* <CHeader location={location} /> */}
+            <div className={styles.content}>
+                <div className={styles.main}>
+                    {children}
+                </div>
+            </div>
+        </div>
+    )
+}
+export default MainLayout;
