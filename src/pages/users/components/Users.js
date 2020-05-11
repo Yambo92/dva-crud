@@ -3,7 +3,8 @@ import { connect } from 'dva'
 import {
     Table,
     Pagination,
-    Popconfirm
+    Popconfirm,
+    Button
 } from 'antd'
 import styles from './Users.css'
 import {PAGE_SIZE} from '@/constants';
@@ -67,9 +68,20 @@ const Users = ({dispatch, list: dataSource, total, loading, page: current}) => {
             query: { page },
         }))
     }
+    const createHandler = (values) => {
+        dispatch({
+            type: 'users/create',
+            payload: values
+        })
+    } 
     return (
         <div className={styles.normal}>
             <div>
+                <div className={styles.create}>
+                    <UserModal record={{}} onOk={(values) => createHandler(values)}>
+                        <Button type="primary">Create User</Button>
+                    </UserModal>
+                </div>
                 <Table
                     columns={columns}
                     dataSource={dataSource}
